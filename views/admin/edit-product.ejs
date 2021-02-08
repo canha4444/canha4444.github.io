@@ -1,0 +1,45 @@
+<%- include('../include(ejs)/head.ejs') %>
+    <link rel="stylesheet" href="/add-product.css">
+    <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+    <%- include('../include(ejs)/navigation.ejs') %>
+    <main>
+        <div class="home-container">
+            <div class='home-content'>
+                <video autoplay="autoplay" loop="loop" muted="muted" style="width: 100%; object-fit: cover;">
+                <source type="audio/mp4" src="/image/3e78e80.mp4"></video>
+            </div>
+            <div class="home-image-block">
+                <div class="home-image">
+                    <img src="/image/journey.png"> 
+                </div>
+                <div class="home-form">
+                    <form class="product-form" action="/admin/<% if(editing) { %>edit-product<%  } else {  %>add-product<% } %>" method="POST">
+                        <div class="Sign-up">Sign Up</div>
+                        <div class="form-control">
+                            <input type="text" name="title" id="title" placeholder="Title" value="<% if(editing) { %><%=products.title%><%  } %>">
+                        </div>
+                        <div class="form-control">
+                            <input type="text" name="imageUrl" id="imageUrl" placeholder="ImageUrl" value="<% if(editing) { %><%=products.imageUrl%><%  } %>">
+                        </div>
+                        <div class="form-control">
+                            <input type="number" name="price" id="price" step="0.01" placeholder="Price" value="<% if(editing) { %><%= products.price %><%  } %>">
+                        </div>
+                        <div class="form-control">
+                            <textarea name="description" id="description" rows="5" placeholder="Description" > <% if(editing) { %><%= products.description %><%  } %></textarea>
+                        </div>
+                        <% if (editing) { %> 
+                            <input type="hidden" value="<%= products.id %>" name="productId">
+                        <% } %>
+                        <button class="btn-sign" type="submit"><% if (editing) { %> Edit Product <% } else { %> Add Product <% } %></button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+       
+
+         
+    </main>
+    <%- include('../include(ejs)/end.ejs') %>

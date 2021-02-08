@@ -1,0 +1,10 @@
+body {
+    background-image: url('./image/Liyue.jpg');
+}
+.detailContainer {
+    width: 800px;
+    height: 800px;
+}
+.detailContainer .detailImage {
+   width: 20%;
+}
