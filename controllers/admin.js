@@ -61,7 +61,6 @@ exports.postEditProduct = (req,res,next) => {
     const price = parseInt(req.body.price);
    Product.findByPk(id)
    .then(products => {
-    console.log('products')
     products.title = title;
     products.imageUrl = imageUrl;
     products.description = description;
