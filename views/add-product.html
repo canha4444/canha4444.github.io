@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Register</title>
+    <link rel="stylesheet" href="/add-product.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <img src="/image/download.png" alt="Ghenshin logo">
+                <li class="main-header__item"><a href="/">HOME</a></li>
+                <li class="main-header__item"><a href="/add-product">NEWS</a></li>
+                <li class="main-header__item"><a href="#">CHARACTERS</a></li>
+                <li class="main-header__item"><a href="#">MANGA</a></li>
+                <li class="main-header__item"><a href="#">FORUMS</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+       
+        <form class="product-form" action="/admin/add-product" method="POST">
+            <div class="form-control">
+                <h1>User Register</h1>
+                <label for="title"><Title></Title></label>
+                <input type="text" name="title" id="title">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<header class="main-header">
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <img src='/image/download.png'>
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">HOME</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">REGISTER</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/character/liyue' ? 'active' : '' %>" href="/character/liyue">CHARACTER</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">CART</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/checkout' ? 'active' : '' %>" href="/checkout">CHECKOUT</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Product List</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/order' ? 'active' : '' %>" href="/order">Order</a>
+            </li>
+        </ul>
+    </nav>
+</header>

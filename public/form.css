@@ -1,0 +1,62 @@
+* {
+  font-family: "微软雅黑", "Microsoft YaHei", "Neuropolitical", sans-serif !important;
+}
+.Sign-up {
+ height: 38px;
+ font-size: 39px !important;
+ font-weight: 400px;
+ font-stretch: normal;
+ color: #4ea4dc;
+ padding-bottom: 8px;
+ border-bottom: 5px solid #4ea4dc;
+ text-align: center;
+}
+.form-control {
+    margin: 1rem 0;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 4px;
+    line-height: 22px;
+    flex: 1;
+    font-weight: 300px;
+    color: black;
+    outline: none;
+  }
+  .form-control input {
+    padding: 8px 8px;
+  }
+  
+  .form-control label,
+  .form-control input,
+  .form-control textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+  
+  .form-control input,
+  .form-control textarea {
+    border: 1px solid #a1a1a1;
+    font: inherit;
+    border-radius: 2px;
+  }
+  
+  .form-control input:focus,
+  .form-control textarea:focus {
+    outline-color: #00695c;
+  }
+
+  .btn-sign {
+    line-height: 46px;
+    font-size: 20px;
+    padding: 0 24px;
+    display: inline-block;
+    border: 1px solid #4ea4dc;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #4ea4dc;
+    color: #fff;
+  }
+  

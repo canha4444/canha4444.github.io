@@ -1,0 +1,24 @@
+<%- include('../include(ejs)/head.ejs') %>
+    <link rel="stylesheet" href="/registor.css">
+</head>
+<body>
+    <%- include('../include(ejs)/navigation.ejs') %>
+    <main>
+   
+            <div class="contact-form">
+                <img alt="" class="avatar" src="/image/lumine.jpg">
+                <h2>Registration Forms</h2>
+                <form action="/admin/add-product" method="POST">
+                    <p>Login</p><input placeholder="Login ID" type="text" name="title" id="title">
+                    <p>Passwrod</p><input placeholder="Enter Password" type="password" name='password' id='password'>
+                    <p>Repeat Password</p><input placeholder="Enter Password" type="password" id='repassword'>
+                     <input type="submit" value="Sign in">
+                    <p><input type="checkbox">Remember Me</p>
+                    <div class="sign-in">
+                        <p>Already have an account?<a href='#'> Sign In</a>.</p>
+                    </div>
+                </form>
+            </div>
+         
+    </main>
+    <%- include('../include(ejs)/end.ejs') %>
