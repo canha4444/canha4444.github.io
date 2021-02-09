@@ -22,7 +22,7 @@ router.get('/edit-product/:productId',productsController.getEditProduct);
 
 router.post('/edit-product',productsController.postEditProduct)
 
-router.post('/delete-product',productsController.postDeleteProduct)
+
 
 
 

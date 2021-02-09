@@ -148,7 +148,7 @@ exports.postCart = (req, res, next) => {
  }
 
 
- exports.postDeleteProduct  = (req, res, next) => {
+ exports.postCartDeleteProduct  = (req, res, next) => {
       const productID = req.body.productId;
       req.user.getCart()
       .then(cart => {
@@ -177,9 +177,10 @@ exports.postOrder = (req,res,next) => {
         return cart.getProducts()
     })
     .then(products => {
+        console.log(products);
         return req.user.createOrder()
         .then(order => {
-             order.addProducts(products.map(product => {
+             order.addProduct(products.map(product => {
               product.orderItem = { quantity: product.cartItem.quantity};
                 return product
             }))
