@@ -75,7 +75,8 @@ Order.belongsTo(User);
 User.hasMany(Order);
 
 Product.belongsToMany(Order,{through:OrderItem});
-Order.belongsToMany(Product, {through: OrderItem});
+Order.belongsToMany(Product,{through:OrderItem});
+
  
 //sequelDB.sync({ force: true})
  sequelDB.sync()
