@@ -54,14 +54,12 @@ exports.getEditProduct = (req, res, next) => {
 exports.postEditProduct = (req,res,next) => {
     const id = req.body.productId;
     // POST data into database mySQL by sequelize
-   
     const title = req.body.title;
     const imageUrl = req.body.imageUrl;
     const description = req.body.description;
     const price = parseInt(req.body.price);
    Product.findByPk(id)
    .then(products => {
-    console.log('products')
     products.title = title;
     products.imageUrl = imageUrl;
     products.description = description;
@@ -70,7 +68,7 @@ exports.postEditProduct = (req,res,next) => {
    })
    .then(result =>
      {
-    console.log('UPDATE PRODUCT');  
+    console.log('UPDATED PRODUCT!!!!');  
     res.redirect('/cart')
     })
    .catch(err => console.log(err));
