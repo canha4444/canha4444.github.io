@@ -1,5 +1,5 @@
 const Product = require('../models/product');
-const Cart = require('../models/cart');
+const Order = require('../models/order');
 
 const Character = require('../models/character');
 
@@ -96,10 +96,11 @@ exports.getIndex = (req, res, next) => {
 
 
 exports.getCart = (req, res, next) => {
+    var total = 0;
     req.user.getCart()
     .then(cart => {
         return cart.getProducts()
-        .then(products => {
+        .then(products => {      
             res.render('shop/cart',
             {prods: products,
              pageTitle:'Home Page',
@@ -168,6 +169,25 @@ exports.getCheckOut = (req, res, next) => {
         path:'/checkout',
         pageTitle:'CheckOut'
     })
+}
+
+exports.postOrder = (req,res,next) => {
+    req.user.getCart()
+    .then(cart => {
+        return cart.getProducts()
+    })
+    .then(products => {
+        return req.user.createOrder()
+        .then(order => {
+             order.addProducts(products.map(product => {
+              product.orderItem = { quantity: product.cartItem.quantity};
+                return product
+            }))
+        })
+        .catch(err => {console.log(err)});
+    })
+    .then(result => res.redirect('/'))
+    .catch(err => console.log(err))
 }
 
 exports.getOders = (req, res, next) => {
