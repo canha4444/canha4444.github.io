@@ -18,8 +18,7 @@ router.get('/result');
 router.get('/edit-product/:productId',productsController.getEditProduct);
 
 router.post('/edit-product',productsController.postEditProduct)
-
-
+///
 
 
 
