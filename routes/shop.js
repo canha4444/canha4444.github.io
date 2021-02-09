@@ -25,7 +25,7 @@ router.get('/order',shopController.getOders);
 
 router.get('/products/:productID',shopController.getProductDetail); /// we will get productID by using syntax: req.params.productID
 
-router.get('/delete-product',shopController.postCartDeleteProduct)
+router.post('/delete-product',shopController.postCartDeleteProduct)
 
 router.post('/create-order',shopController.postOrder);
 
