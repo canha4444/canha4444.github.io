@@ -2,6 +2,7 @@
 const express = require('express');
 const shopController = require('../controllers/shop')
 
+
 ///html file
 
 const router = express.Router();
@@ -26,6 +27,7 @@ router.get('/products/:productID',shopController.getProductDetail); /// we will 
 
 router.get('/delete-product',shopController.postDeleteProduct)
 
+router.post('/create-order',shopController.postOrder);
 
 
 module.exports = router
