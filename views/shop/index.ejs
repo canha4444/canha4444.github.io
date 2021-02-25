@@ -8,7 +8,6 @@
 <body>
    <%- include('../include(ejs)/navigation.ejs') %>
    <main>
-      <div class="main-container">
       <div class="home-container">
          <div class='home-content'>
             <video autoplay="autoplay" loop="loop" muted="muted" style="width: 100%; object-fit: cover;">
@@ -19,6 +18,7 @@
             <img src="/image/journey.png"> 
          </div>
       </div>
+      <div class="news_image">
       <div class="news-container">
           <div class="label__new">
               <h3>NEWS</h3>
@@ -57,15 +57,19 @@
                </div>
             </div>
             <div class="news__part">
-                <ul>
-                   <li>Test</li>
-                   <li>Test</li>
-                   <li>Test</li>
-                   <li>Test</li>
-                   <li>Test</li>
-                </ul>
+               <ul class="new__tab__list">
+                     <li class="new__tab__item">Latest</li>
+               </ul>
+               <ul class="new__list">
+                     <li><a class="new__item">Test</a></li>
+                     <li><a class="new__item">Test</a></li>
+                     <li><a class="new__item">Test</a></li>
+                     <li><a class="new__item">Test</a></li>
+                     <li><a class="new__item">Test</a></li>
+               </ul>
              </div>
-         </div>
+         </div> 
+      </div>
       </div>
       <footer>
          <div class="footer">

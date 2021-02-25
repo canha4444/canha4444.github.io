@@ -30,15 +30,21 @@
     .allIndex {
     position: relative;
     }
-   .news-container{
-    background-image: url('./image/news.jpg');
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 1000px;
-    color: #fff;
-   }
+    .news_image {
+        background-image: url('./image/news.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position:center center;
+     }
+    .news_image .news-container{
+        backdrop-filter: blur(4px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 1000px;
+        color: #fff;
+       }
    .news-container .label__new {
     position: relative;
     margin: 90px auto 60px;
@@ -89,7 +95,60 @@
     background-color: rgba(38,18,12,0.62);
     width: 49%;
     height: 100%;
+
    }
+   .news-container .newsBody .news__part li {
+       display: list-item;
+   }
+ 
+   .news-container .newsBody .news__part .new__tab__list {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin: 35px auto 0;
+    border-bottom: 3px solid rpa(255,255,255,0.1);
+   }
+
+   .news-container .newsBody .news__part .new__tab__list .new__tab__item  {
+       color: #ffd49f;
+       position: relative;
+       padding: 0 19px 12px;
+       font-size: 20px;
+       text-align: center;
+       cursor: pointer;
+   }
+   .news-container .newsBody .news__part .new__tab__list .new__tab__item::after {
+     position: absolute;
+     left: 0;
+     bottom: -3px;
+     display: block;
+     content: '';
+     width: 100%;
+     height: 3px;
+     background: #ffd49f;
+
+    }
+
+   .news-container .newsBody .news__part .new__list {
+    width: 600px;
+    margin: 0;
+   }
+   .news-container .newsBody .news__part .new__list .new__item{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    border-bottom: 2px solid rgba(255, 255, 255,0.08);
+    box-sizing: content-box;
+    font-size: 16px;
+    color: #fff;
+   }
+
+   ul,li {
+       list-style: none;
+   }
+
 
 
    /* FOOTER */
