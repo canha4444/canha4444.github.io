@@ -1,6 +1,7 @@
     body {
     padding: 0;
     margin: 0;
+    font-family: Helvetica;
     }
     image {
     width: 100%;
@@ -30,13 +31,64 @@
     position: relative;
     }
    .news-container{
+    background-image: url('./image/news.jpg');
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 970px;
-    background-image: url('./image/news.jpg');
+    height: 1000px;
     color: #fff;
+   }
+   .news-container .label__new {
+    position: relative;
+    margin: 90px auto 60px;
+    font-size: 80px;
+    font-weight: 400;
+    text-align: center;
+   }
+   .news-container .label__new h3::before {
+       content: '';
+       position: absolute;
+       top: 50%;
+       width: 385px;
+       height: 14px;
+       background: url();
+    }
+ .news-container .label__new h3::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 385px;
+    height: 14px;
+    background: url();
+}
+   .news-container .newsBody {
+        width: 80%;
+        justify-content: center;
+        display: flex;
+        margin: 100px auto;
+   }
+   .news-container .newsBody img {
+       width: 100%;
+   }
+  
+   .news-container .newsBody .carousel__part {
+    width: 49%;
+    height: 100%;
+   }
 
+   .carousel__part .carousel-indicators li {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+  }
+
+   .news-container .newsBody .news__part {
+    position: relative;
+    margin: 0;
+    background-color: rgba(38,18,12,0.62);
+    width: 49%;
+    height: 100%;
    }
 
 
@@ -72,13 +124,14 @@
         -webkit-box-align: center;
         align-items: center;
         -webkit-box-pack: center;
-        justify-content: center;
+        justify-content: space-between;
         color: #fff;
         font-size: 17px;
     }
     .mihoyo-sea-footer .footer-content-logo {
         display: flex;
         justify-content: space-between;
+        margin-right: 100px;
         width: 430px;
     }
     .mihoyo-sea-footer .footer-content-logo .logoimg{
