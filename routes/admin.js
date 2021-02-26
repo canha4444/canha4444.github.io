@@ -6,6 +6,8 @@ const router = express.Router();
 /// html file
 const path = require('path')
 
+
+
 router.get('/add-product',productsController.getAddProduct);
 
 router.post('/add-product',productsController.postAddProduct);
@@ -20,6 +22,9 @@ router.get('/edit-product/:productId',productsController.getEditProduct);
 router.post('/edit-product',productsController.postEditProduct)
 ///
 
+router.get('/add-new',productsController.getNew);
+
+router.post('/add-new',productsController.postNew);
 
 
 module.exports = router;

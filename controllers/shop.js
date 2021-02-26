@@ -1,6 +1,6 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
-
+const New = require('../models/news')
 const Character = require('../models/character');
 
 exports.getAddProduct = (req, res, next) => {
@@ -85,10 +85,18 @@ exports.getCharacterMonst = (req, res, next) => {
 exports.getIndex = (req, res, next) => {
      // res.sendFile(path.join(rootDir,'views','shop.html'));
      /// rows is the first element in array result => you can understand rows = result[0]
-     res.render('shop/index',
-     {
-      pageTitle:'Home Page',
-      path:'/'});
+     New.findAll({limit:5
+        ,order:[['createdAt','DESC']]})
+     .then(results => {
+        res.render('shop/index',
+        {
+         news:results,
+         pageTitle:'Home Page',
+         path:'/',   
+        });
+     })
+     .catch(err => console.log(err))
+    
 
     
 }
@@ -197,5 +205,6 @@ exports.getOders = (req, res, next) => {
         pageTitle:'Order'
     })
 }
+
 
 

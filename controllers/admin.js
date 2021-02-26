@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const User = require('../models/user');
+const New = require('../models/news')
 
 exports.getAddProduct = (req, res, next) => {
     /// get ejs file
@@ -90,5 +91,26 @@ exports.postDeleteProduct = (req,res,next) => {
    .catch(err => {console.log(err)})
 }
 
+exports.getNew = (req, res, next) => {
+   res.render('admin/add-new',{
+       pageTitle:'Add News',
+       path:'/admin/add-new'
+   });
+}
 
-    
+exports.postNew = (req, res, next) => {
+    const title = req.body.title;
+    const newURL = req.body.newsUrl;
+    console.log(req.body.newsUrl);
+    New.create({
+        title:title,
+        newsUrl:newURL
+    })
+    .then(result => {
+        res.redirect('/')
+    }
+    )
+    .catch(err => console.log(err))
+}
+
+

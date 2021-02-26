@@ -144,6 +144,9 @@
     font-size: 16px;
     color: #fff;
    }
+   .news-container .newsBody .news__part .new__list .news__date{
+    color: red;
+   }
 
    ul,li {
        list-style: none;

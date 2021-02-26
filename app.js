@@ -11,7 +11,7 @@ const User = require('./models/user');
 const Cart = require('./models/cart');
 const Order = require('./models/order');
 const OrderItem = require('./models/order-item');
-const errorController = require('./controllers/error')
+const errorController = require('./controllers/error');
 
 //const db = require('./util/database')
 
@@ -25,11 +25,10 @@ const Character = require('./models/character');
 const bodyParser = require('body-parser');
 const Product = require('./models/product');
 const CartItem = require('./models/cart-item');
+const News = require('./models/news');
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
 app.use((req, res, next) => {
     User.findByPk(1)
         .then(user => 
@@ -83,6 +82,7 @@ Order.belongsToMany(Product,{through:OrderItem});
 .then(result => {
     /// restart Server
     Character;
+    News;
     return User.findByPk(1);
 })
 .then(user => {
