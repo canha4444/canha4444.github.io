@@ -61,11 +61,9 @@
                      <li class="new__tab__item">Latest</li>
                </ul>
                <ul class="new__list">
-                     <li><a class="new__item">Test</a></li>
-                     <li><a class="new__item">Test</a></li>
-                     <li><a class="new__item">Test</a></li>
-                     <li><a class="new__item">Test</a></li>
-                     <li><a class="new__item">Test</a></li>
+                  <% for (let newItem of news) { %> 
+                     <li><a class="new__item"><%= newItem.title %></a><p class="news__date"><%= newItem.createdAt %></p></li>
+                     <% } %>                 
                </ul>
              </div>
          </div> 
