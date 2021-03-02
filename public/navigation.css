@@ -18,15 +18,86 @@ image {
     left: 0;
     top: 0;
     }
-    .main-header__item-list {
+    .main-header__nav {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .main-header__nav .main-header__item-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    width: 40%;
+    width: 60%;
+    height: 100%;
     }
+    .main-header__nav .main-header__item a {
+        text-decoration: none;
+    }
+
+    .main-header__nav .main-header__item-right {
+     height: 100%;
+     width: 20%;
+     right: 0;
+     top: 0;
+     display: flex;
+     justify-content: space-between;
+
+    }
+
+
+   
+    /* Dowload button */
+    .main-header__nav .main-header__item-right .header__dow__link {
+        right: 0;
+        top: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 50%;
+    }
+
+    .main-header__nav .main-header__item-right .header__dow__link a img {
+        width: 100%;
+    }
+    
+    /* LOGIN LOGO PART */
+    .main-header__nav .main-header__item-right .header__login__logo {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 26px;
+        background:none;
+        outline: none;
+        color: #ccc;
+        font-size: inherit;
+        font-family: inherit;
+        border: 0;
+    }
+   
+
+    .main-header__nav .main-header__item-right .header__login__logo .header__login_img {
+        margin-left: 18px;
+        width: 27px;
+        height: 27px;
+        opacity: 0.6;
+        border-radius: 20px;
+    }
+    .main-header__nav .main-header__item-right .header__login__logo:hover {
+        -webkit-tap-highlight-color:rgba(0,0,0,0)
+    }
+
+  
+
+ 
+
     .main-header__item {
     margin: 0px 20px !important;
+  
     justify-content: space-between;
     width: 19%;
     height: 60px;
@@ -47,5 +118,6 @@ image {
     .main-header__item a.active {
     text-shadow: 0 0 10px #69e0ff, 0 0 20px #69e0ff, 0 0 40px #69e0ff;
     color:  #fff;
+  
     }
 
