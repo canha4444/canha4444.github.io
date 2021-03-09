@@ -1,6 +1,7 @@
 body {
     padding: 0;
     margin: 0;
+    text-decoration: none;
 }
 image {
     width: 100%;
@@ -59,9 +60,7 @@ image {
         width: 50%;
     }
 
-    .main-header__nav .main-header__item-right .header__dow__link a img {
-        width: 100%;
-    }
+   
     
     /* LOGIN LOGO PART */
     .main-header__nav .main-header__item-right .header__login__logo {
@@ -87,13 +86,12 @@ image {
         opacity: 0.6;
         border-radius: 20px;
     }
+
     .main-header__nav .main-header__item-right .header__login__logo:hover {
-        -webkit-tap-highlight-color:rgba(0,0,0,0)
+        color: white;
     }
-
-  
-
- 
+    
+   
 
     .main-header__item {
     margin: 0px 20px !important;
