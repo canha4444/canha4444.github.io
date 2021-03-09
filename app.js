@@ -7,11 +7,13 @@ app.set('view engine', 'ejs'); /// tell the express what we want to use dinamic 
 app.set('views', 'views') /// where to get these template (in here we use views is the default template)
 const adminRoutes = require('./routes/admin');
 const shopRoute = require('./routes/shop');
+const authRoute = require('./routes/auth');
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const Order = require('./models/order');
 const OrderItem = require('./models/order-item');
 const errorController = require('./controllers/error');
+const session = require('express-session')
 
 //const db = require('./util/database')
 
@@ -28,7 +30,6 @@ const CartItem = require('./models/cart-item');
 const News = require('./models/news');
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use((req, res, next) => {
     User.findByPk(1)
         .then(user => 
@@ -39,10 +40,11 @@ app.use((req, res, next) => {
         .catch(err => {console.log(err)});
 });
 
-
+/// Session /////
+app.use(session({secret: 'my secret', resave:false, saveUninitialized:false}))
 app.use('/admin', adminRoutes);
 app.use(shopRoute);
-
+app.use(authRoute);
 
 
 app.use(express.static(path.join(__dirname, 'public')));

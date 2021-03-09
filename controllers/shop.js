@@ -24,7 +24,8 @@ exports.getProduct = (req, res, next) => {
      res.render('shop/product-list',
      {prods: products,
       pageTitle:'Home Page',
-      path:'/'})
+      path:'/',
+      isAuthenticated:req.isLoggedin})
      }).catch(err => console.log(err));
 
 
@@ -50,7 +51,8 @@ Product.findByPk(productId)
     {
         prods:products,
         pageTitle: products.title,
-        path:'/products'
+        path:'/products',
+        isAuthenticated:req.isLoggedin
     })
 })
 .catch(err => console.log(err));
@@ -63,7 +65,8 @@ exports.getCharacterLiyue = (req, res, next) => {
     res.render('shop/character',{
         chars: products,
         pageTitle:'Character',
-        path:'/character/liyue'
+        path:'/character/liyue',
+        isAuthenticated:req.isLoggedin
     })
    })
    .catch(err => console.log(err));
@@ -76,13 +79,15 @@ exports.getCharacterMonst = (req, res, next) => {
      res.render('shop/monstChar',{
          chars: products,
          pageTitle:'Character',
-         path:'/character/mondstadt'
+         path:'/character/mondstadt',
+         isAuthenticated:req.isLoggedin
      })
     })
     .catch(err => console.log(err));
  }
 
 exports.getIndex = (req, res, next) => {
+     console.log('this is cookie' + req.isLoggedin)
      // res.sendFile(path.join(rootDir,'views','shop.html'));
      /// rows is the first element in array result => you can understand rows = result[0]
      New.findAll({limit:5
@@ -92,7 +97,8 @@ exports.getIndex = (req, res, next) => {
         {
          news:results,
          pageTitle:'Home Page',
-         path:'/',   
+         path:'/', 
+         isAuthenticated:req.isLoggedin  
         });
      })
      .catch(err => console.log(err))
@@ -112,7 +118,9 @@ exports.getCart = (req, res, next) => {
             res.render('shop/cart',
             {prods: products,
              pageTitle:'Home Page',
-             path:'/cart'})
+             path:'/cart',
+             isAuthenticated:req.isLoggedin}
+             )
         }).catch(err => console.log(err))
     })
     .catch(err => console.log(err));
@@ -175,7 +183,8 @@ exports.postCart = (req, res, next) => {
 exports.getCheckOut = (req, res, next) => {
     res.render('shop/checkout',{
         path:'/checkout',
-        pageTitle:'CheckOut'
+        pageTitle:'CheckOut',
+        isAuthenticated:req.isLoggedin
     })
 }
 
@@ -202,7 +211,8 @@ exports.postOrder = (req,res,next) => {
 exports.getOders = (req, res, next) => {
     res.render('shop/order',{
         path:'/order',
-        pageTitle:'Order'
+        pageTitle:'Order',
+        isAuthenticated:req.isLoggedin
     })
 }
 

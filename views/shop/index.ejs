@@ -62,7 +62,7 @@
                </ul>
                <ul class="new__list">
                   <% for (let newItem of news) { %> 
-                     <li><a class="new__item"><%= newItem.title %></a><p class="news__date"><%= newItem.createdAt %></p></li>
+                     <li><a class="new__item" target='_blank' href="<%= newItem.newsUrl %>"><p class="new__title"><%= newItem.title %></p><p class="news__date"><%= newItem.createdAt %></p></a></li>
                      <% } %>                 
                </ul>
              </div>
