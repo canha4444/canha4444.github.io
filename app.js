@@ -1,5 +1,6 @@
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const rootDir = require('./util/path')
 const path = require('path');
 const app = express();
@@ -13,38 +14,65 @@ const Cart = require('./models/cart');
 const Order = require('./models/order');
 const OrderItem = require('./models/order-item');
 const errorController = require('./controllers/error');
-const session = require('express-session')
-
-//const db = require('./util/database')
-
-//////////Model //////
 const sequelDB = require('./util/sequelizeDB');
 const Character = require('./models/character');
+var session = require('express-session');
+var SequelizeStore = require("connect-session-sequelize")(session.Store);
+
+
+//////////Model //////
+
 
 //const characterRoute = require('./routes/character');
 
 
-const bodyParser = require('body-parser');
 const Product = require('./models/product');
 const CartItem = require('./models/cart-item');
 const News = require('./models/news');
 
 
-app.use((req, res, next) => {
-    User.findByPk(1)
-        .then(user => 
-        {
-         req.user = user;
-         next();
-         })
-        .catch(err => {console.log(err)});
-});
+//// Use to parse req.body  to JSON
+app.use(express.urlencoded({ extended: false }));
 
 /// Session /////
-app.use(session({secret: 'my secret', resave:false, saveUninitialized:false}))
+///// this will take your current session on your browser and will find it  in your session database=> If match, it will take that session
+/// If no session match in database, it will return none  
+app.use(
+  session({
+    secret: "session_secret",
+    store: new SequelizeStore({
+      db: sequelDB,
+    }),
+    resave: false,
+    saveUninitialized:false
+  })
+);
+
+
+//// Normally, Sequelize will get the data from table session and store it in session on browser. But, that just the data => not Sequelize model
+/// So we need to define below code
+  
+app.use((req, res, next) => {
+  
+    if(!req.session.user) {
+      ///// if can't find req.session => next() the app.use to render page
+      return next()
+    }
+    User.findByPk(req.session.user.id)
+    .then(user => {
+      req.sessionUser = user;
+      next()
+    })
+    .catch(err => console.log(err))
+  })
+
+
 app.use('/admin', adminRoutes);
 app.use(shopRoute);
 app.use(authRoute);
+
+
+
 
 
 app.use(express.static(path.join(__dirname, 'public')));

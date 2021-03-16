@@ -25,7 +25,7 @@ exports.getProduct = (req, res, next) => {
      {prods: products,
       pageTitle:'Home Page',
       path:'/',
-      isAuthenticated:req.isLoggedin})
+      isAuthenticated:req.session.isLoggedin })
      }).catch(err => console.log(err));
 
 
@@ -52,7 +52,7 @@ Product.findByPk(productId)
         prods:products,
         pageTitle: products.title,
         path:'/products',
-        isAuthenticated:req.isLoggedin
+        isAuthenticated:req.session.isLoggedin 
     })
 })
 .catch(err => console.log(err));
@@ -66,7 +66,7 @@ exports.getCharacterLiyue = (req, res, next) => {
         chars: products,
         pageTitle:'Character',
         path:'/character/liyue',
-        isAuthenticated:req.isLoggedin
+        isAuthenticated:req.session.isLoggedin 
     })
    })
    .catch(err => console.log(err));
@@ -80,14 +80,14 @@ exports.getCharacterMonst = (req, res, next) => {
          chars: products,
          pageTitle:'Character',
          path:'/character/mondstadt',
-         isAuthenticated:req.isLoggedin
+         isAuthenticated:req.session.isLoggedin 
      })
     })
     .catch(err => console.log(err));
  }
 
 exports.getIndex = (req, res, next) => {
-     console.log('this is cookie' + req.isLoggedin)
+     console.log(req.session.user)
      // res.sendFile(path.join(rootDir,'views','shop.html'));
      /// rows is the first element in array result => you can understand rows = result[0]
      New.findAll({limit:5
@@ -98,7 +98,7 @@ exports.getIndex = (req, res, next) => {
          news:results,
          pageTitle:'Home Page',
          path:'/', 
-         isAuthenticated:req.isLoggedin  
+         isAuthenticated:req.session.isLoggedin  
         });
      })
      .catch(err => console.log(err))
@@ -111,7 +111,8 @@ exports.getIndex = (req, res, next) => {
 
 exports.getCart = (req, res, next) => {
     var total = 0;
-    req.user.getCart()
+    console.log('HERE is user ' + req.session.user)
+    req.sessionUser.getCart()
     .then(cart => {
         return cart.getProducts()
         .then(products => {      
@@ -119,7 +120,7 @@ exports.getCart = (req, res, next) => {
             {prods: products,
              pageTitle:'Home Page',
              path:'/cart',
-             isAuthenticated:req.isLoggedin}
+             isAuthenticated:req.session.isLoggedin }
              )
         }).catch(err => console.log(err))
     })
@@ -132,7 +133,7 @@ exports.postCart = (req, res, next) => {
     const proID = req.body.productId;
     let newQuantity = 1;
     let fetchCart;
-    req.user.getCart()
+    req.sessionUser.getCart()
     .then(cart => {
         fetchCart = cart;
         return cart.getProducts({ where: { id: proID } });
@@ -165,8 +166,9 @@ exports.postCart = (req, res, next) => {
 
 
  exports.postCartDeleteProduct  = (req, res, next) => {
+     console.log(req.body)
       const proID = req.body.productId;
-      req.user.getCart()
+      req.sessionUser.getCart()
       .then(cart => {
           return cart.getProducts({ where: { id: proID } });
       } )
@@ -184,18 +186,18 @@ exports.getCheckOut = (req, res, next) => {
     res.render('shop/checkout',{
         path:'/checkout',
         pageTitle:'CheckOut',
-        isAuthenticated:req.isLoggedin
+        isAuthenticated:req.session.isLoggedin
     })
 }
 
 exports.postOrder = (req,res,next) => {
-    req.user.getCart()
+    req.sessionUser.getCart()
     .then(cart => {
         return cart.getProducts()
     })
     .then(products => {
         console.log(products);
-        return req.user.createOrder()
+        return req.sessionUser.createOrder()
         .then(order => {
              order.addProduct(products.map(product => {
               product.orderItem = { quantity: product.cartItem.quantity};
@@ -212,7 +214,7 @@ exports.getOders = (req, res, next) => {
     res.render('shop/order',{
         path:'/order',
         pageTitle:'Order',
-        isAuthenticated:req.isLoggedin
+        isAuthenticated:req.session.isLoggedin
     })
 }
 
