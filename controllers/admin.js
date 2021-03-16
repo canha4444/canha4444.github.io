@@ -8,7 +8,8 @@ exports.getAddProduct = (req, res, next) => {
     {pageTitle: 'Add Product',
     path:'/admin/add-product',
     editing:false,
-    isAuthenticated:req.isLoggedin});
+    isAuthenticated:req.session.isLoggedin 
+});
 
 }
 
@@ -18,7 +19,7 @@ exports.postAddProduct = (req,res,next) => {
         const imageUrl = req.body.imageUrl;
         const description = req.body.description;
         const price = parseInt(req.body.price);
-        req.user.createProduct({
+        req.sessionUser.createProduct({
             title:title,
             imageUrl:imageUrl,
             description:description,
@@ -39,7 +40,7 @@ exports.getEditProduct = (req, res, next) => {
     }
     const productId = req.params.productId;
     /// get ejs file
-    req.user.getProducts({where:{id:productId}})
+    req.sessionUser.getProducts({where:{id:productId}})
     .then(products => {
         const product = products[0]
         res.render('admin/edit-product',
@@ -48,7 +49,7 @@ exports.getEditProduct = (req, res, next) => {
         pageTitle: 'Add Product',
         path:'/edit-product',
         editing: editMode,
-        isAuthenticated:req.isLoggedin
+        isAuthenticated:req.session.isLoggedin 
         })
 }).catch(err => console.log(err));
    ;
@@ -97,7 +98,7 @@ exports.getNew = (req, res, next) => {
    res.render('admin/add-new',{
        pageTitle:'Add News',
        path:'/admin/add-new',
-       isAuthenticated:req.isLoggedin
+       isAuthenticated:req.session.isLoggedin 
    });
 }
 
