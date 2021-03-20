@@ -87,7 +87,7 @@ exports.getCharacterMonst = (req, res, next) => {
  }
 
 exports.getIndex = (req, res, next) => {
-     console.log(req.session.user)
+     console.log(req.session.isLoggedin)
      // res.sendFile(path.join(rootDir,'views','shop.html'));
      /// rows is the first element in array result => you can understand rows = result[0]
      New.findAll({limit:5
