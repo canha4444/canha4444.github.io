@@ -113,16 +113,7 @@ Order.belongsToMany(Product,{through:OrderItem});
     /// restart Server
     Character;
     News;
-    return User.findByPk(1);
 })
-.then(user => {
-    if (!user) {
-      return User.create({ name: 'Duc', email: 'ducvu@gmail.com' });
-    }
-    return user })
-// .then(user => {
-//     return user.createCart()
-// })
 .then(user => 
     {
         app.listen(3000)
