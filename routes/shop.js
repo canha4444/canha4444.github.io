@@ -1,6 +1,8 @@
 /// Where the user see
+
 const express = require('express');
 const shopController = require('../controllers/shop')
+const isAuth = require('../middleware/is-auth')
 
 
 ///html file
@@ -15,19 +17,19 @@ router.get('/character/liyue',shopController.getCharacterLiyue);
 
 router.get('/character/mondstadt',shopController.getCharacterMonst);
 
-router.get('/cart',shopController.getCart);
+router.get('/cart',isAuth,shopController.getCart);
 
-router.post('/cart',shopController.postCart);
+router.post('/cart',isAuth,shopController.postCart);
 
-router.get('/checkout',shopController.getCheckOut);
+router.get('/checkout',isAuth,shopController.getCheckOut);
 
-router.get('/order',shopController.getOders);
+router.get('/order',isAuth,shopController.getOders);
 
 router.get('/products/:productID',shopController.getProductDetail); /// we will get productID by using syntax: req.params.productID
 
-router.post('/delete-product',shopController.postCartDeleteProduct)
+router.post('/delete-product',isAuth,shopController.postCartDeleteProduct)
 
-router.post('/create-order',shopController.postOrder);
+router.post('/create-order',isAuth,shopController.postOrder);
 //////
 
 

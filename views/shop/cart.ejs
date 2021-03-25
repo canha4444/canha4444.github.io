@@ -18,14 +18,16 @@
                                 <h1><%= p.title %></h1>
                                 <h2>Quantity: <%= p.cartItem.quantity %></h2>
                                 <button class="btn"><a href='admin/edit-product/<%=p.id%>?edit=true'>Edit</a></button>
-                                <form action="/delete-product" method="POST">
+                            <form action="/delete-product" method="POST">
                                 <input type="hidden" value="<%= p.id %>" name="productId">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>"> 
                                 <button class="btn btn-danger" type="submit">DELETE</button>
                             </form>
                             </li>
                         <% }) %>
                     </ul>
-                  <form action="/create-order" method="POST">              
+                  <form action="/create-order" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">               
                     <button class="btn btn-danger" type="submit">Order Now</button>
                  </form>
             </div>
