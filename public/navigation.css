@@ -77,7 +77,6 @@ image {
         font-family: inherit;
         border: 0;
     }
-   
 
     .main-header__nav .main-header__item-right .header__login__logo .header__login_img {
         margin-left: 18px;
@@ -89,10 +88,73 @@ image {
 
     .main-header__nav .main-header__item-right .header__login__logo:hover {
         color: white;
+        
     }
     
-   
+ /* LOGOUT LOGO PART */
 
+    .main-header__nav .main-header__item-right .header__logout__logo {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 26px;
+        background:none;
+        outline: none;
+        color: #ccc;
+        font-size: inherit;
+        font-family: inherit;
+        border: 0;
+      
+    }
+    .main-header__nav .main-header__item-right .header__logout__logo .dropdown {
+     display: inline-block;
+     
+    }
+    .dropdown .user-name {
+        padding-right: 20px;
+    }
+
+    .dropdown .dropdown__content {
+        display: none;
+        min-width: 160px;
+        background:rgba(0,0,0,0.9);
+        transform-origin: top;
+        position: absolute;
+        right: -16px;
+        padding: 30px 48px;
+        z-index: 999;
+        transform: translateY(20px);
+    }
+    .dropdown .dropdown__content .subcontent-menu {
+        display: flex;
+        justify-content: right;
+    }
+    .dropdown .dropdown__content .subcontent-menu .account-button {
+        width: 48%;
+    }
+
+    .dropdown .dropdown__content .subcontent-menu .logout-button {
+        width: 48%;
+        
+    }
+
+    .dropdown .dropdown__content .subcontent-menu .logout-button::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        
+    }
+
+    .header__logout__logo:hover .dropdown__content {
+        display: block;
+    }
+    .dropdown .default {color: #fff;}
+
+
+    
+ 
     .main-header__item {
     margin: 0px 20px !important;
   

@@ -9,6 +9,7 @@ app.set('views', 'views') /// where to get these template (in here we use views 
 const adminRoutes = require('./routes/admin');
 const shopRoute = require('./routes/shop');
 const authRoute = require('./routes/auth');
+const csrf = require('csurf')
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const Order = require('./models/order');
@@ -19,20 +20,20 @@ const Character = require('./models/character');
 var session = require('express-session');
 var SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-
 //////////Model //////
-
-
 //const characterRoute = require('./routes/character');
-
-
 const Product = require('./models/product');
 const CartItem = require('./models/cart-item');
 const News = require('./models/news');
 
 
 //// Use to parse req.body  to JSON
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
+
+
 
 /// Session /////
 ///// this will take your current session on your browser and will find it  in your session database=> If match, it will take that session
@@ -48,6 +49,7 @@ app.use(
   })
 );
 
+const csrfProtection = csrf();
 
 //// Normally, Sequelize will get the data from table session and store it in session on browser. But, that just the data => not Sequelize model
 /// So we need to define below code
@@ -66,7 +68,17 @@ app.use((req, res, next) => {
     .catch(err => console.log(err))
   })
 
+// Csurf must below session creation => because the package will use that session
+/// Check CSRF Token
+app.use(csrfProtection)
+////////////////
 
+
+app.use((req, res, next) => {
+  //res.locals.isAuthenticated = req.session.isLoggedin;
+  res.locals.csrfToken = req.csrfToken(); // => Create CSRF Token
+  next()
+})
 app.use('/admin', adminRoutes);
 app.use(shopRoute);
 app.use(authRoute);
@@ -90,7 +102,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 Product.belongsTo(User,{contraints:true, onDelete:'CASCADE'});
 
 User.hasMany(Product);
-User.hasOne(Cart); /// OR Cart.belongsTo(User); (Cai nao cung duoc)
+User.hasOne(Cart); /// OR Cart.belongsTo(User); Tu dong dao 1 userID ngay table cart
 
 //////// Cart ////////
 Cart.belongsToMany(Product,{ through:CartItem })

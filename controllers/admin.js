@@ -3,6 +3,7 @@ const User = require('../models/user');
 const New = require('../models/news')
 
 exports.getAddProduct = (req, res, next) => {
+   
     /// get ejs file
     res.render('admin/edit-product',
     {pageTitle: 'Add Product',
@@ -93,6 +94,9 @@ exports.postDeleteProduct = (req,res,next) => {
 }
 
 exports.getNew = (req, res, next) => {
+    if(!req.session.isLoggedin) {
+        return res.redirect('/login')
+    }
    res.render('admin/add-new',{
        pageTitle:'Add News',
        path:'/admin/add-new',

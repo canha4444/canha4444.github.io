@@ -98,7 +98,8 @@ exports.getIndex = (req, res, next) => {
          news:results,
          pageTitle:'Home Page',
          path:'/', 
-         isAuthenticated:req.session.isLoggedin  
+         isAuthenticated:req.session.isLoggedin,
+         
         });
      })
      .catch(err => console.log(err))
@@ -191,12 +192,13 @@ exports.getCheckOut = (req, res, next) => {
 }
 
 exports.postOrder = (req,res,next) => {
+    let fetchedCart = null;
     req.sessionUser.getCart()
     .then(cart => {
+        fetchedCart = cart;
         return cart.getProducts()
     })
     .then(products => {
-        console.log(products);
         return req.sessionUser.createOrder()
         .then(order => {
              order.addProduct(products.map(product => {
@@ -206,16 +208,30 @@ exports.postOrder = (req,res,next) => {
         })
         .catch(err => {console.log(err)});
     })
-    .then(result => res.redirect('/'))
+    .then(result => {
+      return fetchedCart.setProducts(null);
+    })
+    .then(result => {
+        res.redirect('/')
+    })
     .catch(err => console.log(err))
 }
 
 exports.getOders = (req, res, next) => {
-    res.render('shop/order',{
-        path:'/order',
-        pageTitle:'Order',
-        isAuthenticated:req.session.isLoggedin
-    })
+    req.sessionUser.getOrders()
+    .then(order => console.log(order))
+    .catch(err => console.log(order))
+    // .then(result => {
+    //     console.log(result);
+    //     res.render('shop/order',{
+    //         path:'/order',
+    //         pageTitle:'Order',
+    //         isAuthenticated:req.session.isLoggedin,
+    //         oders:result
+    //     })
+    // })
+    // .catch(err => console.log(err))
+    
 }
 
 
